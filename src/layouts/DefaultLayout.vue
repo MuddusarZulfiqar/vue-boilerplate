@@ -45,13 +45,14 @@ import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import { ref, watch } from 'vue'
 
 const { data, isLoading } = useCurrentUserQuery()
+
 const user = ref(null)
 
 watch(
-  () => data,
+  () => data.value,
   (val) => {
     user.value = val
   },
   { immediate: true }
-)
+);
 </script>

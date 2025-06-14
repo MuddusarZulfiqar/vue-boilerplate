@@ -16,6 +16,7 @@ export function authService() {
     },
 
     me: async () => {
+      console.log("Fetching user details from API");
       try {
         const response = await request.get(buildRoute(apiRoutes.auth.me));
         return response.data;

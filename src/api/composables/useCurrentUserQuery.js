@@ -15,7 +15,6 @@ export function useCurrentUserQuery() {
     enabled: !!authStore.token,
   });
 
-  // ✅ Fix: watch the `.data` ref directly
   watch(
     () => query.data.value,
     async (data) => {

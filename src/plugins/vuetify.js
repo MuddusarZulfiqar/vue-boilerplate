@@ -1,9 +1,20 @@
-// Vuetify plugin setup
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
-import { aliases, mdi } from "vuetify/iconsets/mdi"; // optional: Material Design Icons
+import { aliases, mdi } from "vuetify/iconsets/mdi";
 
-// optional: dark/light themes
+/**
+ * Vuetify instance
+ *
+ * This configured Vuetify instance includes:
+ * - Dark and light themes with custom primary and secondary colors
+ * - Default theme set to "dark"
+ * - Material Design Icons (mdi) integration
+ *
+ * Use this instance to enable Vuetify globally in your app.
+ *
+ * @type {ReturnType<typeof createVuetify>}
+ */
+
 const vuetify = createVuetify({
   theme: {
     defaultTheme: "dark",

@@ -2,6 +2,9 @@
 import { useRouter, useRoute } from 'vue-router'
 import config from '@/config'
 import { ref } from 'vue'
+import { inject } from 'vue'
+const $vueform = inject('$vueform')
+
 
 const router = useRouter()
 const route = useRoute()
@@ -15,6 +18,7 @@ const currentLocale = ref(route.params.locale || config.settings.defaultLocale)
  */
 function switchLanguage(lang) {
   currentLocale.value = lang
+  $vueform.value.i18n.locale = lang
 
   if (!route.name) return
 

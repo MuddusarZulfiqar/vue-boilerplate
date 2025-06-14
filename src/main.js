@@ -3,10 +3,13 @@ import App from "./App.vue";
 import { registerDirectives } from "@/directives";
 import { createPinia } from "pinia";
 import router from "./router";
-import { VueQueryPlugin } from "@tanstack/vue-query";
 import config from "./config";
 import i18n, { loadLocaleMessages } from "./i18n";
 import vuetify from "./plugins/vuetify";
+import { installVueQuery } from "./lib/queryClient";
+import Vueform from "@vueform/vueform";
+import vueformConfig from "./../vueform.config";
+
 import "./assets/styles/main.scss";
 
 // Create app
@@ -52,22 +55,17 @@ router.beforeEach(async (to, from, next) => {
 // Use plugins
 app.use(router);
 app.use(i18n);
-
-app.use(VueQueryPlugin, {
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: false,
-      staleTime: 1000 * 60 * 5,
-    },
-    mutations: {
-      retry: false,
-    },
-  },
-});
-
-// Use Vuetify
+installVueQuery(app);
 app.use(vuetify);
+app.use(Vueform, vueformConfig);
+
+// Global error handler
+app.config.errorHandler = (err, instance, info) => {
+  console.error("🌐 Global Error Handler:", err, info);
+
+  // Optional: send to monitoring service
+  // logErrorToService(err, info);
+};
 
 // Mount app
 app.mount("#app");

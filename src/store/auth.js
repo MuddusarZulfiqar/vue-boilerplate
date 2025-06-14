@@ -1,3 +1,4 @@
+import { queryClient } from "@/lib/queryClient";
 import { defineStore } from "pinia";
 
 export const useAuthStore = defineStore("auth", {
@@ -21,10 +22,8 @@ export const useAuthStore = defineStore("auth", {
       this.token = null;
       this.role = null;
       this.user = null;
-      const { useQueryClient } = await import("@tanstack/vue-query");
-      const queryClient = useQueryClient();
-      queryClient.clear();
 
+      queryClient.clear(); // Clear query cache
       localStorage.removeItem("token");
       localStorage.removeItem("role");
     },

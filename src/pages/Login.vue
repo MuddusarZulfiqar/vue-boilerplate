@@ -2,6 +2,9 @@
     <h3 class="text-h6 mb-4 text-center">
         {{ $t('login') }}
     </h3>
+    <v-alert v-if="error" type="error" class="mb-4" density="compact" closable icon="mdi-stop-circle-outline">
+        {{ error.message }}
+    </v-alert>
     <v-form @submit.prevent="handleLogin">
         <v-text-field v-model="username" label="Username" name="username" required />
 
@@ -11,9 +14,6 @@
             {{ isPending ? 'Logging in...' : 'Login' }}
         </v-btn>
 
-        <v-alert v-if="error" type="error" class="mt-4" density="compact">
-            {{ error.message }}
-        </v-alert>
 
         <div class="mt-4 text-center">
             <span>
@@ -30,8 +30,8 @@ import { useRouter } from 'vue-router'
 import { useLoginMutation } from '@/api/composables/useLoginMutation'
 
 // Form state
-const username = ref('evelyns')
-const password = ref('evelynspass')
+const username = ref('')
+const password = ref('')
 
 // Router instance
 const router = useRouter()
@@ -41,12 +41,6 @@ const { login, isPending, error } = useLoginMutation()
 
 // Submit handler
 const handleLogin = () => {
-    login({ username: username.value, password: password.value })
-        .then(() => {
-            router.push({ name: 'home' })
-        })
-        .catch((err) => {
-            console.error('Login failed:', err)
-        })
-}
+    login({ username: username.value, password: password.value });
+};
 </script>

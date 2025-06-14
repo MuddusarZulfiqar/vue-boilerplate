@@ -1,6 +1,10 @@
 import { createI18n } from "vue-i18n";
 import config from "./config";
 
+/**
+ * Vue I18n instance for internationalization
+ */
+
 const i18n = createI18n({
   legacy: false,
   locale: config.settings.defaultLocale,

@@ -22,7 +22,7 @@
                                 Go to User Dashboard
                             </v-btn>
 
-                            <div v-if="!authStore.token" class="mt-4">
+                            <div v-if="!authStore?.token" class="mt-4">
                                 <p>
                                     If you want to log in,
                                     <RouterLink :to="{ name: 'login' }" class="text-primary font-weight-bold">
@@ -43,7 +43,6 @@ import { useAuthStore } from '@/store'; // assuming you're using stores/index.js
 import { computed } from 'vue';
 
 const authStore = useAuthStore();
-
 const userRole = computed(() => authStore.userRole);
 const isAdmin = computed(() => userRole.value === 'admin');
 const isUser = computed(() => userRole.value === 'user');

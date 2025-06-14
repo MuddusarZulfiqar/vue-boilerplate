@@ -1,0 +1,20 @@
+// ----------------------------------------
+// ! Project: Your Project Name
+// ! Description: Main stylesheet for the project
+// ----------------------------------------
+
+
+// ----------------------------------------
+// ! Imports
+// ! This file imports all necessary stylesheets for the project
+// ----------------------------------------
+
+@use 'utility/index' as *;
+@use 'base/base' as *;
+@use 'core/index' as *; // if you created a core/_index.scss with @forward
+@use 'common/common' as *;
+
+// ----------------------------------------
+// ! Global Styles
+// ! This section contains global styles that apply to the entire project
+// ----------------------------------------
